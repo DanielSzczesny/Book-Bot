@@ -37,12 +37,22 @@ def count_each_alpha_char(text):
     return result
 
 
+def print_report(book_path, list_dicts):
+    result = f"--- Begin report of {book_path} ---\n\n"
+    for d in list_dicts:
+        result += f"The '{d["letter"]}' character was found {d["num"]} times\n"
+    result += f"--- End of the report ---"
+
+    print(result)
+
+
 def main():
-    with open("books/frankenstein.txt") as f:
+    book_path = "books/frankenstein.txt"
+    with open(book_path) as f:
         file_contents = f.read()
         sorted_dict = count_each_alpha_char(file_contents)
         sorted_dict.sort(reverse=True, key=sort_on)
-        print(sorted_dict)
+        print_report(book_path, sorted_dict)
 
 
 main()
